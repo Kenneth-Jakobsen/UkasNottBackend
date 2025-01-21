@@ -19,7 +19,7 @@ namespace UkasNøttBackend.Controllers
         [HttpGet(Name = "GetStudentTeam")]
         public List<Student> GetStudents()
         {
-            var teams = studentDBContext.Teams.ToList();
+            //var teams = studentDBContext.Teams.ToList();
             var students = studentDBContext.Students.ToList();
 
             return students;
