@@ -11,7 +11,7 @@ using UkasNøttBackend.Data;
 namespace UkasNøttBackend.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
-    [Migration("20250121122224_InitialMigration")]
+    [Migration("20250121155436_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -46,6 +46,20 @@ namespace UkasNøttBackend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("UkasNøttBackend.Team", b =>
+                {
+                    b.Property<int>("TeamNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeamNumber");
+
+                    b.ToTable("Teams");
                 });
 #pragma warning restore 612, 618
         }

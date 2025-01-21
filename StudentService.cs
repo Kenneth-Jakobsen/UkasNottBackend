@@ -12,18 +12,25 @@ namespace UkasNøttBackend
         {
             studentDBContext = studentDBContext;
             var tempTeam = 0;
-            var txtFile = "C:\\Users\\robin\\Desktop\\UkasNøttBackend\\UkasNøttBackend\\Students.txt";
+            var txtFile = "C:\\Users\\robin\\source\\repos\\UkasNottBackend\\Students.txt";
             var textData = File.ReadAllLines(txtFile);
             var studentName = string.Empty;
             var studentDescription = string.Empty;
-
-
+         
+            // Todo: Sjekk om det finnes data allerede.
             foreach (var line in textData)
             {
 
                 if (line.Contains("Team"))
                 {
                     tempTeam++;
+                    var team = new Team()
+                    {
+                        TeamNumber = tempTeam,
+                        TeamName = line
+                    };
+                    studentDBContext.Teams.Add(team);
+                    studentDBContext.SaveChanges();
                 }
 
                 else if (line.Contains(" "))
@@ -42,8 +49,9 @@ namespace UkasNøttBackend
                     };
 
                     studentDBContext.Students.Add(newStudent);
+                    studentDBContext.SaveChanges();
                     //StudentsList.Add(newStudent);
-                    
+
                 };
             }
 

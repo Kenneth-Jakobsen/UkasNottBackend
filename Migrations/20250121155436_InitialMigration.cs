@@ -24,6 +24,18 @@ namespace UkasNøttBackend.Migrations
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Teams",
+                columns: table => new
+                {
+                    TeamNumber = table.Column<int>(type: "int", nullable: false),
+                    TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Teams", x => x.TeamNumber);
+                });
         }
 
         /// <inheritdoc />
@@ -31,6 +43,9 @@ namespace UkasNøttBackend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Students");
+
+            migrationBuilder.DropTable(
+                name: "Teams");
         }
     }
 }

@@ -44,6 +44,20 @@ namespace UkasNøttBackend.Migrations
 
                     b.ToTable("Students");
                 });
+
+            modelBuilder.Entity("UkasNøttBackend.Team", b =>
+                {
+                    b.Property<int>("TeamNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeamNumber");
+
+                    b.ToTable("Teams");
+                });
 #pragma warning restore 612, 618
         }
     }
