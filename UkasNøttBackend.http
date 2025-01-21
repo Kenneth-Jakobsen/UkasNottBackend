@@ -1,0 +1,6 @@
+@UkasNøttBackend_HostAddress = http://localhost:5022
+
+GET {{UkasNøttBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
