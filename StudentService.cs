@@ -16,43 +16,51 @@ namespace UkasNøttBackend
             var textData = File.ReadAllLines(txtFile);
             var studentName = string.Empty;
             var studentDescription = string.Empty;
-         
-            // Todo: Sjekk om det finnes data allerede.
-            foreach (var line in textData)
+
+
+            if (!studentDBContext.Teams.Any() || !studentDBContext.Students.Any())
+                foreach (var line in textData)
+                {
+
+                    if (line.Contains("Team"))
+                    {
+                        tempTeam++;
+                        var team = new Team()
+                        {
+                            TeamNumber = tempTeam,
+                            TeamName = line
+                        };
+
+                        studentDBContext.Teams.Add(team);
+                        studentDBContext.SaveChanges();
+
+                    }
+
+                    else if (line.Contains(" "))
+                    {
+                        studentName = line;
+                    }
+                    else
+                    {
+                        studentDescription = line;
+                        Student newStudent = new Student()
+                        {
+                            Name = studentName,
+                            Description = studentDescription,
+                            TeamNumber = tempTeam
+
+                        };
+
+                        studentDBContext.Students.Add(newStudent);
+                        studentDBContext.SaveChanges();
+
+                        //StudentsList.Add(newStudent);
+
+                    };
+                }
+            else
             {
-
-                if (line.Contains("Team"))
-                {
-                    tempTeam++;
-                    var team = new Team()
-                    {
-                        TeamNumber = tempTeam,
-                        TeamName = line
-                    };
-                    studentDBContext.Teams.Add(team);
-                    studentDBContext.SaveChanges();
-                }
-
-                else if (line.Contains(" "))
-                {
-                    studentName = line;
-                }
-                else
-                {
-                    studentDescription = line;
-                    Student newStudent = new Student()
-                    {
-                        Name = studentName,
-                        Description = studentDescription,
-                        TeamNumber = tempTeam
-
-                    };
-
-                    studentDBContext.Students.Add(newStudent);
-                    studentDBContext.SaveChanges();
-                    //StudentsList.Add(newStudent);
-
-                };
+                Console.WriteLine("Det finnes allerede data!");
             }
 
         }

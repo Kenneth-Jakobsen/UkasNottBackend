@@ -15,8 +15,14 @@ builder.Services.AddDbContext<StudentDBContext>(options => options.UseSqlServer(
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddScoped<StudentService>();
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var studentService = scope.ServiceProvider.GetRequiredService<StudentService>();
+    // StudentService constructor will automatically handle initialization
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,7 +37,13 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+
+
 app.Run();
+
+
+
 
 
 /* nuget console commands
