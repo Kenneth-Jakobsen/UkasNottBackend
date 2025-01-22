@@ -12,7 +12,7 @@ namespace UkasNøttBackend
         {
             studentDBContext = studentDBContext;
             var tempTeam = 0;
-            var txtFile = "C:\\Users\\robin\\source\\repos\\UkasNottBackend\\Students.txt";
+            var txtFile = "C:\\Users\\robin\\Desktop\\UkasNøttBackend\\UkasNottBackend\\Students.txt";
             var textData = File.ReadAllLines(txtFile);
             var studentName = string.Empty;
             var studentDescription = string.Empty;
