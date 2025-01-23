@@ -11,7 +11,7 @@ using UkasNøttBackend.Data;
 namespace UkasNøttBackend.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
-    [Migration("20250123090929_InitialMigration")]
+    [Migration("20250123112829_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />

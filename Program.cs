@@ -10,7 +10,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin", policy =>
     {
-        policy.WithOrigins("http://127.0.0.1:5500") // Allow the specific origin
+        policy.WithOrigins("*") // Allow the specific origin
               .AllowAnyHeader()                     // Allow any header
               .AllowAnyMethod();                     // Allow any HTTP method (including DELETE)
     });
