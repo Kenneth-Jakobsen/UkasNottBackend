@@ -8,141 +8,282 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <style>
+    /* Base styling for body */
+    body {
+        width: 400px;
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f7f6;
+        color: #333;
+        margin: 0;
+        padding: 0;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
 
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Container for the table */
-.table-container {
-    width: 90%;
-    max-width: 1200px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Advanced Table Styling */
-.advanced-table {
-    width: 50%;
-    border-collapse: collapse;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Header styling */
-.advanced-table th {
-    background-color: #3498db;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-size: 16px;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #2980b9;
-}
-
-/* Body cell styling */
-.advanced-table td {
-    padding: 10px 15px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Row hover effect */
-.advanced-table tr:hover {
-    background-color: #f1f1f1;
-    
-}
-
-/* Alternating row colors */
-.advanced-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* Alternating row colors */
-.advanced-table tr:nth-child(even):hover {
-    background-color: #e0e0e0;
-}
-
-/* Hover effect for odd rows */
-.advanced-table tr:nth-child(odd):hover {
-    background-color: #e0e0e0;
-}
-
-/* Adding focus style for table rows when clicked */
-.advanced-table tr:focus-within {
-    background-color: #dcdcdc;
-}
-
-/* Table row's last cell (for improved last column appearance) */
-.advanced-table td:last-child {
-    font-weight: bold;
-    color: #2c3e50;
-}
-
-/* Table header cells for better spacing */
-.advanced-table th {
-    padding: 15px 20px;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .advanced-table {
-        font-size: 14px;
     }
 
-    .advanced-table th, .advanced-table td {
-        padding: 8px;
+    /* Container for the table */
+    .table-container {
+        width: 90%;
+        max-width: 1200px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-}
 
-
-h2 {
-      width: 45%;
-      font-family: 'Arial', sans-serif;
-      font-size: 3rem;
-      color: #FF6347; /* Tomato color */
-      text-transform: uppercase;
-      text-align: center;
-      background: linear-gradient(135deg, #FF6347, #FFD700); /* Gradient effect */
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent; /* Makes the text gradient */
-      letter-spacing: 3px;
-      padding: 20px;
-      border: 3px solid #FF6347;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease-in-out;
+    /* Team Name (h2) Styling */
+    h2 {
+        width: 100%;
+        font-family: 'Arial', sans-serif;
+        font-size: 2.5rem;
+        color: #1abc9c;
+        /* Cool teal color */
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 3px;
+        padding: 20px;
+        border: 3px solid #1abc9c;
+        /* Border to match the color */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        background: linear-gradient(135deg, #1abc9c, #16a085);
+        /* Gradient effect for a cool tone */
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        /* Makes the text gradient */
     }
 
     h2:hover {
-      transform: scale(1.1); /* Slight zoom on hover */
+        transform: scale(1.05);
+        /* Slight zoom effect */
     }
 
+    /* Advanced Table Styling */
+    .advanced-table {
+        width: 100%;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Header styling */
+    .advanced-table th {
+        background-color: #3498db;
+        /* Consistent blue */
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-size: 16px;
+        letter-spacing: 1px;
+        border-bottom: 2px solid #2980b9;
+    }
+
+    /* Table body cell styling */
+    .advanced-table td {
+        padding: 10px 15px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Row hover effect */
+    .advanced-table tr:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Alternating row colors */
+    .advanced-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .advanced-table tr:nth-child(odd):hover,
+    .advanced-table tr:nth-child(even):hover {
+        background-color: #e0e0e0;
+    }
+
+    /* Focus style for table rows when clicked */
+    .advanced-table tr:focus-within {
+        background-color: #dcdcdc;
+    }
+
+    /* Table row's last cell for improved last column appearance */
+    .advanced-table td:last-child {
+        font-weight: bold;
+        color: #2c3e50;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+        .advanced-table th,
+        .advanced-table td {
+            padding: 8px;
+            font-size: 14px;
+        }
+    }
+
+    /* Dropdown styling */
+    .dropdown {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        /* Light border */
+        overflow: hidden;
+        /* Prevent content overflow */
+    }
+
+    .dropdown-button {
+        background-color: #4CAF50;
+        /* Green background */
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        cursor: pointer;
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.3s ease, padding-left 0.3s ease;
+    }
+
+    .dropdown-button:hover {
+        background-color: #45a049;
+        padding-left: 20px;
+        /* Slight shift effect */
+    }
+
+    .dropdown-content {
+        display: none;
+        padding: 15px;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+    }
+
+    /* Table styling inside dropdown */
+    .advanced-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .advanced-table th,
+    .advanced-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .student-row:hover {
+        background-color: #f1f1f1;
+    
+    }
+
+    /* Style for table details row */
+    .details-row {
+        background-color: #f9f9f9;
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Optional: Style the 'Additional Info' text */
+    .details-row pre {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 13px;
+        margin: 0;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    /* Apply a global font and reset some basic styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+
+
+    /* Container for buttons to center them */
+    .button-container {
+        display: flex;
+        gap: 20px;
+    }
+
+    /* Base button styles */
+    .cool-btn {
+        padding: 15px 40px;
+        font-size: 18px;
+        font-weight: bold;
+        border: 2px solid transparent;
+        border-radius: 50px;
+        background-image: linear-gradient(45deg, #ff6ec7, #3a8dff);
+        color: white;
+        text-transform: uppercase;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        outline: none;
+    }
+
+    /* Button hover effect */
+    .cool-btn:hover {
+        transform: scale(1.1);
+        background-color: #333;
+    }
+
+    /* Create an inner effect for the button when clicked */
+    .cool-btn:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background-color: #fff;
+        transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+
+    /* Active effect (when clicked) */
+    .cool-btn:active:before {
+        width: 0;
+        height: 0;
+        opacity: 0.2;
+        top: 50%;
+        left: 50%;
+    }
+
+    /* Button 2 specific hover and click color effects */
+    #btn2:hover {
+        background-image: linear-gradient(45deg, #42e695, #3bb2b8);
+    }
+
+    #btn2:active {
+        background-color: #3bb2b8;
+    }
+    #btn1:hover {
+        background-image: linear-gradient(45deg, #42e695, #3bb2b8);
+    }
+
+    #btn1:active {
+        background-color: #3bb2b8;
+    }
 </style>
 
 <body>
-    <button onclick="deleteData()">Fjern Fra Database</button>
-    <button onclick="putData()">Les Tekstfil inn i database</button>
+    <div class="button-container">
+        <button class="cool-btn" id="btn1" onclick="deleteData()">Fjern Fra Database</button>
+        <button class="cool-btn" id="btn2" onclick="putData()">Les Tekstfil inn i database</button>
+    </div>
     <div id="app"></div>
 
 
 
 
-
     <script>
-
-
         let studentData;
         let team1 = [];
         let team2 = [];
@@ -153,27 +294,20 @@ h2 {
         let students = [];
         let teams = [];
 
-
-
-        async function deleteData(){
-            
+        async function deleteData() {
             await axios.delete('https://localhost:7182/Maintenance')
-            .catch(error => {
-                    console.error('Eror deleting data:', error);  // Handle errors
+                .catch(error => {
+                    console.error('Error deleting data:', error);  // Handle errors
                 });
-
 
             Run();
         }
 
-
-        async function putData(){
-            
+        async function putData() {
             await axios.put('https://localhost:7182/Maintenance')
-            .catch(error => {
+                .catch(error => {
                     console.error('Error putting data:', error);  // Handle errors
                 });
-
 
             Run();
         }
@@ -183,29 +317,28 @@ h2 {
         }
 
         async function Run() {
-         studentData;
-         team1 = [];
-         team2 = [];
-         team3 = [];
-         team4 = [];
-         team5 = [];
-         team6 = [];
-         students = [];
-         teams = [];
+            studentData;
+            team1 = [];
+            team2 = [];
+            team3 = [];
+            team4 = [];
+            team5 = [];
+            team6 = [];
+            students = [];
+            teams = [];
 
             document.getElementById("app").innerHTML = "";
             await getStudents();
             await getTeams();
-            
-            if(studentData.length > 0){
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 1))].teamName, team1);
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 2))].teamName, team2);
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 3))].teamName, team3);
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 4))].teamName, team4);
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 5))].teamName, team5);
-            showTable(teams[teams.findIndex(team => findTeamIndex(team, 6))].teamName, team6);
-            }
 
+            if (studentData.length > 0) {
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 1))].teamName, team1);
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 2))].teamName, team2);
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 3))].teamName, team3);
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 4))].teamName, team4);
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 5))].teamName, team5);
+                showTable(teams[teams.findIndex(team => findTeamIndex(team, 6))].teamName, team6);
+            }
         }
 
         async function getTeams() {
@@ -252,28 +385,66 @@ h2 {
         }
 
         function showTable(team, teamNumber) {
-            
             document.getElementById("app").innerHTML += /*HTML*/`
-            <h2>${team}</h2>
-            <table class="advanced-table">
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-                ${showTableRows(teamNumber)}
-            </table>
+            <div class="dropdown">
+                <button class="dropdown-button" onclick="toggleDropdown('${team}')">${team}</button>
+                <div id="dropdown-${team}" class="dropdown-content">
+                    <table class="advanced-table">
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                        </tr>
+                        ${showTableRows(teamNumber)}
+                    </table>
+                </div>
+            </div>
             `;
         }
 
         function showTableRows(team) {
             var rows = "";
-            team.forEach(student => {
-                rows += `<tr>
+            team.forEach((student, index) => {
+                rows += `<tr class="student-row" onclick="toggleDetails(${index}, ${team})">
                             <td>${student.name}</td>
                             <td>${student.description}</td>
-                        </tr>`});
+                        </tr>
+                        <tr id="details-${index}" class="details-row" style="display: none;">
+                            <td colspan="2">
+                                <strong>Additional Info:</strong><br>
+                                <pre>${JSON.stringify(student, null, 2)}</pre>
+                            </td>
+                        </tr>`;
+            });
             return rows;
         }
+
+        function toggleDetails(index, team) {
+            const detailsRow = document.getElementById(`details-${index}`);
+            if (detailsRow.style.display === "none") {
+                detailsRow.style.display = "table-row";
+            } else {
+                detailsRow.style.display = "none";
+            }
+        }
+
+        function toggleDropdown(teamName) {
+            const dropdownContent = document.getElementById(`dropdown-${teamName}`);
+            if (dropdownContent.style.display === "none" || dropdownContent.style.display === "") {
+                dropdownContent.style.display = "block";
+            } else {
+                dropdownContent.style.display = "none";
+            }
+        }
+
+        // Example: Add an animation effect when button is clicked
+        document.querySelectorAll('.cool-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                this.style.transform = 'scale(0.98)';  // Shrink when clicked
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';  // Return to original size
+                }, 200);
+            });
+        });
 
         Run();
     </script>
