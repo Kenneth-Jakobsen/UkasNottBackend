@@ -6,7 +6,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", policy =>
+    {
+        policy.WithOrigins("http://127.0.0.1:5500") // Allow the specific origin
+              .AllowAnyHeader()                     // Allow any header
+              .AllowAnyMethod();                     // Allow any HTTP method (including DELETE)
+    });
+});
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<StudentDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -17,7 +25,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<StudentService>();
 var app = builder.Build();
+// Enable CORS middleware
+app.UseCors("AllowSpecificOrigin");
 
+app.UseRouting();
 using (var scope = app.Services.CreateScope())
 {
     var studentService = scope.ServiceProvider.GetRequiredService<StudentService>();

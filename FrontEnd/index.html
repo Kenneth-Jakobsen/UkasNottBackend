@@ -7,9 +7,104 @@
     <title>Ukas Nøtt1</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
+<style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container for the table */
+.table-container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Advanced Table Styling */
+.advanced-table {
+    width: 50%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Header styling */
+.advanced-table th {
+    background-color: #3498db;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #2980b9;
+}
+
+/* Body cell styling */
+.advanced-table td {
+    padding: 10px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Row hover effect */
+.advanced-table tr:hover {
+    background-color: #f1f1f1;
+    
+}
+
+/* Alternating row colors */
+.advanced-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect for odd rows */
+.advanced-table tr:nth-child(odd):hover {
+    background-color: #e0e0e0;
+}
+
+/* Adding focus style for table rows when clicked */
+.advanced-table tr:focus-within {
+    background-color: #dcdcdc;
+}
+
+/* Table row's last cell (for improved last column appearance) */
+.advanced-table td:last-child {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Table header cells for better spacing */
+.advanced-table th {
+    padding: 15px 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .advanced-table {
+        font-size: 14px;
+    }
+
+    .advanced-table th, .advanced-table td {
+        padding: 8px;
+    }
+}
+
+</style>
 
 <body>
-
+    <button onclick="deleteData()">Fjern Fra Database</button>
+    <button onclick="putData()">Les Tekstfil inn i database</button>
     <div id="app"></div>
 
 
@@ -18,7 +113,7 @@
 
     <script>
 
-        
+
         let studentData;
         let team1 = [];
         let team2 = [];
@@ -27,55 +122,111 @@
         let team5 = [];
         let team6 = [];
         let students = [];
-        
-        async function Run() {
-            await getStudents();
-            showTable("Team 1", team1);
-            showTable("Team 2", team2);
-            showTable("Team 3", team3);
-            showTable("Team 4", team4);
-            showTable("Team 5", team5);
-            showTable("Team 6", team6);
+        let teams = [];
+
+
+
+        async function deleteData(){
+            
+            await axios.delete('https://localhost:7182/Maintenance')
+            .catch(error => {
+                    console.error('Eror deleting data:', error);  // Handle errors
+                });
+
+
+            Run();
         }
 
-       async function getStudents() {
-            await axios.get('https://localhost:7182/Student')
-            .then(response => {
-                studentData = response.data;
-                for (let student of studentData)
-                 {
-                students.push(student.name);
-                switch(student.teamNumber){
-                    case 1:
-                    team1.push(student);
-                    break;
-                case 2:
-                    team2.push(student);
-                    break;
-                case 3:
-                    team3.push(student);
-                    break;
-                case 4:
-                    team4.push(student);
-                    break;
-                case 5:
-                    team5.push(student);
-                    break;
-                case 6:
-                    team6.push(student);
-                    break;
-                }
-                 }
-            })
+
+        async function putData(){
+            
+            await axios.put('https://localhost:7182/Maintenance')
             .catch(error => {
-                console.error('Error fetching data:', error);  // Handle errors
-            });
+                    console.error('Error putting data:', error);  // Handle errors
+                });
+
+
+            Run();
+        }
+
+        function findTeamIndex(thisObject, id) {
+            return thisObject.id == id;
+        }
+
+        async function Run() {
+         studentData;
+         team1 = [];
+         team2 = [];
+         team3 = [];
+         team4 = [];
+         team5 = [];
+         team6 = [];
+         students = [];
+         teams = [];
+
+            document.getElementById("app").innerHTML = "";
+            await getStudents();
+            await getTeams();
+            
+            if(studentData.length > 0){
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 1))].teamName, team1);
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 2))].teamName, team2);
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 3))].teamName, team3);
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 4))].teamName, team4);
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 5))].teamName, team5);
+            showTable(teams[teams.findIndex(team => findTeamIndex(team, 6))].teamName, team6);
+            }
+
+        }
+
+        async function getTeams() {
+            await axios.get('https://localhost:7182/Team')
+                .then(response => {
+                    teams = response.data;
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);  // Handle errors
+                });
+        }
+
+        async function getStudents() {
+            await axios.get('https://localhost:7182/Student')
+                .then(response => {
+                    studentData = response.data;
+                    for (let student of studentData) {
+                        students.push(student.name);
+                        switch (student.teamNumber) {
+                            case 1:
+                                team1.push(student);
+                                break;
+                            case 2:
+                                team2.push(student);
+                                break;
+                            case 3:
+                                team3.push(student);
+                                break;
+                            case 4:
+                                team4.push(student);
+                                break;
+                            case 5:
+                                team5.push(student);
+                                break;
+                            case 6:
+                                team6.push(student);
+                                break;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);  // Handle errors
+                });
         }
 
         function showTable(team, teamNumber) {
+            
             document.getElementById("app").innerHTML += /*HTML*/`
             <h2>${team}</h2>
-            <table>
+            <table class="advanced-table">
                 <tr>
                     <th>Name</th>
                     <th>Description</th>
@@ -86,16 +237,16 @@
         }
 
         function showTableRows(team) {
-            var rows="";
+            var rows = "";
             team.forEach(student => {
-             rows +=`<tr>
+                rows += `<tr>
                             <td>${student.name}</td>
                             <td>${student.description}</td>
                         </tr>`});
             return rows;
         }
 
-            Run();
+        Run();
     </script>
 
 

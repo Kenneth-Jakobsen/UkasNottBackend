@@ -28,7 +28,7 @@ namespace UkasNøttBackend
                         tempTeam++;
                         var team = new Team()
                         {
-                            TeamNumber = tempTeam,
+                            Id = tempTeam,
                             TeamName = line
                         };
 

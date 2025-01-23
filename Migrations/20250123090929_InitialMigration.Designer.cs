@@ -11,7 +11,7 @@ using UkasNøttBackend.Data;
 namespace UkasNøttBackend.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
-    [Migration("20250122112127_InitialMigration")]
+    [Migration("20250123090929_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -51,17 +51,11 @@ namespace UkasNøttBackend.Migrations
             modelBuilder.Entity("UkasNøttBackend.Team", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("TeamName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeamNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

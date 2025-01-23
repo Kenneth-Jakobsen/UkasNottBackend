@@ -16,7 +16,7 @@ namespace UkasNøttBackend.Controllers
             this.studentDBContext = studentDBContext;
         }
 
-        [HttpGet(Name = "GetStudentTeam")]
+        [HttpGet(Name = "GetStudent")]
         public List<Student> GetStudents()
         {
 
@@ -24,22 +24,6 @@ namespace UkasNøttBackend.Controllers
             var students = studentDBContext.Students.ToList();
             HttpContext.Response.Headers.Add("Access-Control-Allow-Origin", "*");
             return students;
-        }
-
-
-        [HttpPost(Name = "PostStudentTeam")]
-        public void AddStudent(Student student)
-        {
-            var newStudent = new Student()
-            {
-                Name = student.Name,
-                Description = student.Description,
-                TeamNumber = student.TeamNumber
-            };
-
-            studentDBContext.Students.Add(newStudent);
-            
-            studentDBContext.SaveChanges();
         }
 
         //private void CreateNewStudentService(StudentDBContext studentDBContext)

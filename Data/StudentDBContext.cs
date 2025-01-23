@@ -12,7 +12,7 @@ namespace UkasNøttBackend.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Team>()
-                .Property(s => s.TeamNumber)
+                .Property(s => s.Id)
                 .ValueGeneratedNever();  // Disable identity (auto-increment) behavior
         }
         public DbSet<Student> Students { get; set; }

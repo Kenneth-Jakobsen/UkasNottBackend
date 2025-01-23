@@ -48,17 +48,11 @@ namespace UkasNøttBackend.Migrations
             modelBuilder.Entity("UkasNøttBackend.Team", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("TeamName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TeamNumber")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
