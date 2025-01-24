@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UkasNøttBackend.Migrations
+namespace UkasNottBackend.Migrations
 {
     /// <inheritdoc />
     public partial class InitialMigration : Migration

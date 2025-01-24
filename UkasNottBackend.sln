@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UkasNøttBackend", "UkasNøttBackend.csproj", "{E6B84D76-5268-42B7-917E-09DE29AAC102}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UkasNottBackend", "UkasNottBackend.csproj", "{E6B84D76-5268-42B7-917E-09DE29AAC102}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

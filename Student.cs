@@ -1,4 +1,4 @@
-namespace UkasNøttBackend
+namespace UkasNottBackend
 {
         public class Student
         {

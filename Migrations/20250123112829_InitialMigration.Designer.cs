@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UkasNøttBackend.Data;
+using UkasNottBackend.Data;
 
 #nullable disable
 
-namespace UkasNøttBackend.Migrations
+namespace UkasNottBackend.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
     [Migration("20250123112829_InitialMigration")]

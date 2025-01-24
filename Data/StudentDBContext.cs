@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace UkasNøttBackend.Data
+namespace UkasNottBackend.Data
 {
     public class StudentDBContext : DbContext
     {

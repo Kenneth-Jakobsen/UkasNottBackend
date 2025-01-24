@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UkasNøttBackend.Data;
+using UkasNottBackend.Data;
 
-namespace UkasNøttBackend.Controllers
+namespace UkasNottBackend.Controllers
 {
     [ApiController]
     [Route("[controller]")]

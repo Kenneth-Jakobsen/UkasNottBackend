@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UkasNøttBackend.Data;
+using UkasNottBackend.Data;
 
 #nullable disable
 
-namespace UkasNøttBackend.Migrations
+namespace UkasNottBackend.Migrations
 {
     [DbContext(typeof(StudentDBContext))]
     partial class StudentDBContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace UkasNøttBackend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("UkasNøttBackend.Student", b =>
+            modelBuilder.Entity("UkasNottBackend.Student", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace UkasNøttBackend.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("UkasNøttBackend.Team", b =>
+            modelBuilder.Entity("UkasNottBackend.Team", b =>
                 {
                     b.Property<int>("Id")
                         .HasColumnType("int");

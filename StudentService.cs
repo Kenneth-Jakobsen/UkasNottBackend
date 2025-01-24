@@ -1,6 +1,6 @@
-﻿using UkasNøttBackend.Data;
+﻿using UkasNottBackend.Data;
 
-namespace UkasNøttBackend
+namespace UkasNottBackend
 {
     internal class StudentService
     {

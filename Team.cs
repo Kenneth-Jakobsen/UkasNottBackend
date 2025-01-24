@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UkasNøttBackend
+namespace UkasNottBackend
 {
     public class Team
     {

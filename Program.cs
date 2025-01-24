@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using UkasNøttBackend;
-using UkasNøttBackend.Data;
+using UkasNottBackend;
+using UkasNottBackend.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,7 +58,7 @@ app.Run();
 
 
 /* nuget console commands
- * sqllocaldb create local  -  i CMD vindu først.
+ * sqllocaldb create local  -  i CMD vindu f?rst.
  * Lage database:
  * Add-Migration InitialMigration
  * Update-Database
